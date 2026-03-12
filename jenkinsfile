@@ -3,23 +3,23 @@ pipeline{
     stages{
         stage("clone"){
             steps{
-             git clone https://github.com/sbtalk71/kube-jenkins-app.git
+             git https://github.com/sbtalk71/kube-jenkins-app.git
             }
         }
         stage("compile"){
             steps{
-            sh mvn clean compile
+            sh "mvn clean compile"
             }
         }
 
          stage("package"){
             steps{
-            sh mvn package
+            sh "mvn package"
             }
         }
        stage("docker build"){
                    steps{
-                   sh docker build -t kube-jenkins-app:${BUILD_NUMBER} .
+                   sh "docker build -t kube-jenkins-app:${BUILD_NUMBER} ."
                    }
                }
         }
